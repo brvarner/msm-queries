@@ -4,7 +4,8 @@ class DirectorController < ApplicationController
   end
 
   def director_details
-    @director_id = params.fetch("id")
+    @director = Director.find(params[:id])
+    @films = Movie.where(director_id: @director_id)
     render ({:template => "director_templates/d_details"})
   end
 end
